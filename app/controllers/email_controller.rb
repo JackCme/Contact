@@ -3,7 +3,19 @@ class EmailController < ApplicationController
 	end
 
 	def email_send
-		@email = params[:email]
-		@content = params[:content]
+		email = params[:email]
+		content = params[:content]
+		title = params[:title]
+		
+		gmail = Gmail.connect("cochonjun@gmail.com","Chldnjswns1!")
+		gmail.deliver do
+			to email
+			subject title
+			text_part do
+				body content
+			end
+		end
+
+		gmail.logout
 	end
 end
