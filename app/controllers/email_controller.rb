@@ -3,5 +3,7 @@ class EmailController < ApplicationController
 	end
 
 	def email_send
+		@email = params[:email]
+		@content = params[:content]
 	end
 end
